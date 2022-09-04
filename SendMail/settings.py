@@ -37,6 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # pakage apps
+    'rest_framework',
+    'django_cleanup.apps.CleanupConfig',
+    # my apps
+    'email_app.apps.EmailAppConfig',
+
 ]
 
 MIDDLEWARE = [
