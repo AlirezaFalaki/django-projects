@@ -5,4 +5,5 @@ from . import views
 app_name = "dashboard"
 urlpatterns = [
     path('', views.IndexView.as_view(), name='main'),
+    path('register/', views.RegisterView.as_view(), name='register'),
 ]
