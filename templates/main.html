@@ -41,12 +41,12 @@
                         {% else %}
                             <div class="navbar-nav " style="margin-left: 15px">
                                 <button type="button" class="btn btn-success"><a href="{% url 'dashboard:login' %}"
-                                                                                  style="height: 15px; color: white; text-decoration: none;">Login</a>
+                                                                                 style="height: 15px; color: white; text-decoration: none;">Login</a>
                                 </button>
                             </div>
                             <div class="navbar-nav " style="margin-left: 15px">
-                                  <button type="button" class="btn btn-success"><a href="{% url 'dashboard:register' %}"
-                                                                                  style="height: 15px; color: white; text-decoration: none;">register</a>
+                                <button type="button" class="btn btn-success"><a href="{% url 'dashboard:register' %}"
+                                                                                 style="height: 15px; color: white; text-decoration: none;">register</a>
                                 </button>
                             </div>
                         {% endif %}
@@ -59,6 +59,38 @@
     </div>
 
 </header>
+{% if request.user.is_authenticated %}
+    <div class="container"
+         style="text-align: center; margin: 15% auto; background-color: #0DCAF0; width: 30%; padding: 15px; border-radius: 20px;">
+        <h3>FastMail</h3>
+        <p>You can easily forward your emails to your friends</p>
+        <div class="container button-form">
+            <button class="btn btn-danger"><a href="" style="text-decoration: none; color: white;">Dashboard</a>
+            </button>
+            <button class="btn btn-danger"><a href="" style="text-decoration: none; color: white;">Inbox</a></button>
+            <button class="btn btn-danger"><a href="" style="text-decoration: none; color: white;">Send Mail</a>
+            </button>
+        </div>
+    </div>
+    {% else %}
+    <div class="container"
+         style="text-align: center; margin: 10% auto; background-color: #0DCAF0; width: 30%; padding: 15px; border-radius: 20px;">
+        <h3>FastMail</h3>
+        <p>You can easily forward your emails to your friends</p>
+        <p>At first you must be<span style="font-weight: bold; color: red"> login </span>in this site</p>
+        <div class="container button-form">
+            <button class="btn btn-danger"><a href="{% url 'dashboard:login' %}" style="text-decoration: none; color: white;">Login</a>
+            </button>
+        </div>
+    </div>
+{% endif %}
+
+
+
+
+
+
+
 
 </body>
 </html>
