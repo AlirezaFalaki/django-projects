@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
+from email_app.models import Email
 # Create your views here.
 from django.views.generic import TemplateView, View
 from django.contrib.auth.models import User
@@ -8,7 +9,8 @@ from django.contrib.auth.models import User
 
 class IndexView(TemplateView):
     def get(self, request, *args, **kwargs):
-        return render(request, 'main.html')
+        in_emails = self.request.user.ReceiveEmails.all()
+        return render(request, 'main.html', context={'mails': in_emails})
 
 
 class LoginView(TemplateView):
@@ -46,3 +48,12 @@ class LogoutView(View):
     def get(self, request, *args, **kwargs):
         logout(request)
         return redirect('/')
+
+
+def detailmail(request, pk):
+    mail = Email.objects.get(id=pk)
+    if not mail.is_read:
+        mail.is_read = True
+        mail.save()
+        return render(request, 'MailDetail.html', context={'mail': mail})
+    return render(request, 'MailDetail.html', context={'mail': mail})

@@ -12,9 +12,6 @@ class Home(viewsets.ModelViewSet):
     serializer_class = EmailSerilizer
     renderer_classes = [renderers.StaticHTMLRenderer]
 
-    def get(self, request, *args, **kwargs):
-        return Response(template_name='email_app/main.html')
-
 
 
 

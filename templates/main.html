@@ -41,12 +41,12 @@
                         {% else %}
                             <div class="navbar-nav " style="margin-left: 15px">
                                 <button type="button" class="btn btn-danger"><a href="{% url 'dashboard:login' %}"
-                                                                                 style="height: 15px; color: white; text-decoration: none;">Login</a>
+                                                                                style="height: 15px; color: white; text-decoration: none;">Login</a>
                                 </button>
                             </div>
                             <div class="navbar-nav " style="margin-left: 15px">
                                 <button type="button" class="btn btn-danger"><a href="{% url 'dashboard:register' %}"
-                                                                                 style="height: 15px; color: white; text-decoration: none;">register</a>
+                                                                                style="height: 15px; color: white; text-decoration: none;">register</a>
                                 </button>
                             </div>
                         {% endif %}
@@ -61,25 +61,31 @@
 </header>
 {% if request.user.is_authenticated %}
     <div class="container "
-         style="text-align: center; margin: 15% auto; background-color: #0DCAF0; width: 30%; padding: 15px; border-radius: 20px;">
+         style="text-align: center; margin: 10% auto; background-color: #0DCAF0; width: 30%; padding: 15px; border-radius: 20px;">
         <h3>FastMail</h3>
         <p>You can easily forward your emails to your friends</p>
         <div class="containe row" style="width: 100%;">
-            <button class="btn btn-success col-xs-4 col-md-3" style="margin-left: 45px; margin-right: 10px;"><a href="" style="text-decoration: none; color: white;">Dashboard</a>
+            <button class="btn btn-success col-xs-4 col-md-3" style="margin-left: 45px; margin-right: 10px;"><a href=""
+                                                                                                                style="text-decoration: none; color: white;">Dashboard</a>
             </button>
-            <button class="btn btn-success col-xs-4 col-md-3" style="margin: 0 10px;"><a href="" style="text-decoration: none; color: white;">Inbox</a></button>
-            <button class="btn btn-success col-xs-4 col-md-3" style="margin: 0 10px;"><a href="" style="text-decoration: none; color: white;">Send Mail</a>
+            <button class="btn btn-success col-xs-4 col-md-3" style="margin: 0 10px;"><a href=""
+                                                                                         style="text-decoration: none; color: white;">Inbox</a>
+            </button>
+            <button class="btn btn-success col-xs-4 col-md-3" style="margin: 0 10px;"><a href=""
+                                                                                         style="text-decoration: none; color: white;">Send
+                Mail</a>
             </button>
         </div>
     </div>
-    {% else %}
+{% else %}
     <div class="container"
          style="text-align: center; margin: 10% auto; background-color: #0DCAF0; width: 30%; padding: 15px; border-radius: 20px;">
         <h3>FastMail</h3>
         <p>You can easily forward your emails to your friends</p>
         <p>At first you must be<span style="font-weight: bold; color: red"> login </span>in this site</p>
         <div class="container button-form">
-            <button class="btn btn-danger"><a href="{% url 'dashboard:login' %}" style="text-decoration: none; color: white;">Login</a>
+            <button class="btn btn-danger"><a href="{% url 'dashboard:login' %}"
+                                              style="text-decoration: none; color: white;">Login</a>
             </button>
         </div>
     </div>
@@ -87,9 +93,42 @@
 
 
 
+<!--inbox-->
+<div class="container" style="width: 75%;">
+    <h2>Inbox</h2><br>
+    {% if mails %}
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">Author</th>
+                <th scope="col">Title</th>
+                <th scope="col">Data/Time</th>
+                <th scope="col">Status</th>
+                <th scope="col">Detail</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for mail in mails %}
+            <tr>
+                <th scope="row">{{ mail.id }}</th>
+                <td>{{ mail.author }}</td>
+                <td>{{ mail.title }}</td>
+                <td>{{ mail.created }}</td>
+                {% if mail.is_read  %}
+                 <td><span style="color: blue">Email has been read</span></td>
+                    {% else %}
+                     <td><span style="color: red">Email has not been read</span></td>
+                {% endif %}
+                <td><a href="/detail/{{ mail.id }}">See</a></td>
+            </tr>
+            {% endfor %}
 
+            </tbody>
+        </table>
+    {% endif %}
 
-
+</div>
 
 
 </body>

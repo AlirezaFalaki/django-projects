@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'email_app.apps.EmailAppConfig',
     'dashboard.apps.DashboardConfig',
 
+
 ]
 
 MIDDLEWARE = [

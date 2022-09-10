@@ -8,8 +8,8 @@ class Email(models.Model):
     recipients = models.ManyToManyField(User, related_name='ReceiveEmails')
     title = models.CharField(max_length=100)
     body = models.TextField()
-    attacht = models.FileField(verbose_name="attachment", upload_to='email-files')
     created = models.DateTimeField(auto_now_add=True)
+    is_read = models.BooleanField(default=False)
 
     def __str__(self):
         return self.author.username + '--' + self.title
