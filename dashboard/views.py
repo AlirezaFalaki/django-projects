@@ -22,7 +22,6 @@ class LoginView(TemplateView):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            print('salam')
             return redirect('/')
         return HttpResponse('Your entered information is not correct !!!')
 
@@ -36,9 +35,9 @@ class RegisterView(TemplateView):
         email = request.POST.get('email')
         password = request.POST.get('password')
         cpassword = request.POST.get('Cpassword')
-
         if password == cpassword:
-            User.objects.create(username=username, email=email, password=password)
+            user = User.objects.create(username=username, email=email, password=password)
+            login(request, user)
             return redirect('dashboard:main')
         return HttpResponse('invalid input data !!!.')
 
