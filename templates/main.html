@@ -95,8 +95,9 @@
 
 <!--inbox-->
 <div class="container" style="width: 75%;">
-    <h2>Inbox</h2><br>
-    {% if mails %}
+
+    {% if mails and request.user.is_authenticate %}
+        <h2>Inbox</h2><br>
         <table class="table">
             <thead class="thead-dark">
             <tr>
@@ -106,10 +107,12 @@
                 <th scope="col">Data/Time</th>
                 <th scope="col">Status</th>
                 <th scope="col">Detail</th>
+
+
             </tr>
             </thead>
             <tbody>
-            {% for mail in mails %}
+            {% for mail in request.user.ReceiveEmail %}
             <tr>
                 <th scope="row">{{ mail.id }}</th>
                 <td>{{ mail.author }}</td>
@@ -129,7 +132,10 @@
     {% endif %}
 
 </div>
-
+l
 
 </body>
+<script>
+    // fetch("dsfsfd").then().then()
+</script>
 </html>

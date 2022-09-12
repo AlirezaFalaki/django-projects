@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 class Email(models.Model):
     author = models.ForeignKey(User, related_name='emails', on_delete=models.CASCADE)
-    recipients = models.ManyToManyField(User, related_name='ReceiveEmails')
+    recipients = models.ManyToManyField(User, related_name='in_emails')
     title = models.CharField(max_length=100)
     body = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
