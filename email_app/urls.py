@@ -6,12 +6,13 @@ from rest_framework_simplejwt import views as jwt_views
 
 
 router = routers.DefaultRouter()
-router.register(r'emails', views.AuthorEmailViewset)
+router.register(r'authoremails', views.AuthorEmailViewset, basename='authoremails')
+router.register(r'receiveemails', views.ReceiveEmailViewset, basename='receiveemails')
 
 app_name = 'email_app'
 
 urlpatterns = [
-    path('', include(router.urls), name='emials'),
+    path('', include(router.urls), name='create_emails'),
     path('register/', views.RegisterAPI.as_view(), name='register'),
     # path('login/', views.LoginAPI.as_view(), name='login'),
     # path('logout/', knoxviews.LogoutView.as_view(), name='logout'),

@@ -3,16 +3,17 @@ from django.contrib.auth.models import User
 from . models import Email
 
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'email')
+
+
 class EmailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Email
         exclude = ['created']
 
-
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ('id', 'username', 'email')
 
 
 class RegisterSerializer(serializers.ModelSerializer):
